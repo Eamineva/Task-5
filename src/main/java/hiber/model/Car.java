@@ -3,13 +3,14 @@ package hiber.model;
 import com.sun.istack.NotNull;
 
 import javax.persistence.*;
-/*@Entity
-@Table(name = "car")*/
-@Embeddable
+@Entity
+@Table(name = "car")
 public class Car {
-    /*@Id
+
+    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;*/
+    @Column(name = "id")
+    private Long id;
 
     @Column(name = "model")
     public String model;
@@ -17,16 +18,22 @@ public class Car {
     @Column(name = "series")
     public int series;
 
+    @OneToOne(mappedBy = "car")
+    private User user;
+
     public Car() {}
 
     public Car(String model, int series) {
         this.model = model;
         this.series = series;
     }
+    public Car(String model, int series, long id) {
+        this.model = model;
+        this.series = series;
+        this.id = id;
+    }
 
-    /*public Long getId() {
-        return id;
-    }*/
+
     public String getModel() {
         return model;
     }

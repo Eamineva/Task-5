@@ -17,9 +17,15 @@ public class UserServiceImp implements UserService {
 
    @Transactional
    @Override
-   public void add(User user/*, Car car*/) {
-      userDao.add(user/*,car*/);
-//      userDao.add(car);
+   public void add(User user) {
+      userDao.add(user);
+
+   }
+
+   @Transactional
+   @Override
+   public void car_for_user(Car car) {
+      userDao.car_for_user(car);
    }
 
    @Transactional(readOnly = true)
@@ -35,10 +41,6 @@ public class UserServiceImp implements UserService {
    }
 
 
-  /* @Transactional(readOnly = true)
-   @Override
-   public List<Car> listCars() {
-      return userDao.listCars();
-   }*/
+
 
 }

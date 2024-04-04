@@ -8,6 +8,7 @@ public class User {
 
    @Id
    @GeneratedValue(strategy = GenerationType.IDENTITY)
+   @Column(name = "id")
    private Long id;
 
    @Column(name = "name")
@@ -19,8 +20,9 @@ public class User {
    @Column(name = "email")
    private String email;
 
-   @Embedded
-   private Car ecars;
+   @OneToOne(cascade = CascadeType.ALL)
+   @JoinColumn(name = "T_id", referencedColumnName = "id")
+   private Car car;
 
    public User() {}
    
@@ -33,7 +35,7 @@ public class User {
       this.firstName = firstName;
       this.lastName = lastName;
       this.email = email;
-      this.ecars = cars;
+      this.car = cars;
    }
 
    public Long getId() {
@@ -68,6 +70,17 @@ public class User {
       this.email = email;
    }
    public Car getecars() {
-      return ecars;
+      return car;
+   }
+
+   @Override
+   public String toString() {
+      return "User{" +
+              "id=" + id +
+              ", firstName='" + firstName + '\'' +
+              ", lastName='" + lastName + '\'' +
+              ", email='" + email + '\'' +
+              ", car=" + car +
+              '}';
    }
 }
